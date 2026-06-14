@@ -21,7 +21,7 @@ function App() {
     const arbeitsdauer = calculate();
 
     const zeiten = {
-      Datum: date,
+      Datum: new Date(date).toLocaleDateString("de-CH"),
       Arbeitsbeginn: beginnWork,
       Pausenstart: beginnBreak,
       Pausenende: endBreak,
@@ -30,11 +30,11 @@ function App() {
     };
 
     setarbeitszeiten((prev) => {
-      console.log("Speichere:", arbeitszeiten);
+      //console.log("Speichere:", arbeitszeiten);
       const neu = [...prev, zeiten];
-      console.log("Neues Array:", neu);
+      //console.log("Neues Array:", neu);
       localStorage.setItem("arbeitszeiten", JSON.stringify(neu));
-      console.log(localStorage.getItem("arbeitszeiten"));
+      //console.log(localStorage.getItem("arbeitszeiten"));
       return neu;
     });
 
