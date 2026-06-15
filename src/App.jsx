@@ -29,6 +29,11 @@ function App() {
       Arbeitsdauer: arbeitsdauer,
     };
 
+    if (!date || !beginnWork || !beginnBreak || !endBreak || !endWork) {
+      setOutput("Bitte alle Daten eingeben!");
+      return;
+    }
+
     setarbeitszeiten((prev) => {
       //console.log("Speichere:", arbeitszeiten);
       const neu = [...prev, zeiten];
@@ -98,49 +103,51 @@ function App() {
   return (
     <>
       <h2>Arbeitszeiterfassung</h2>
-      <label htmlFor="date">Datum: </label>
-      <input
-        type="date"
-        id="date"
-        name="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-      <label htmlFor="beginnWork">Arbeitsbeginn:</label>
-      <input
-        type="time"
-        id="beginnWork"
-        value={beginnWork}
-        onChange={(e) => setBeginnWork(e.target.value)}
-      />
-      <br />
-      <label htmlFor="beginnBreak">Beginn Mittagspause:</label>
-      <input
-        type="time"
-        id="beginnBreak"
-        value={beginnBreak}
-        onChange={(e) => setBeginnBreak(e.target.value)}
-      />
-      <br />
-      <label htmlFor="endBreak">Ende Mittagspause:</label>
-      <input
-        type="time"
-        id="endBreak"
-        value={endBreak}
-        onChange={(e) => setEndBreak(e.target.value)}
-      />
-      <label htmlFor="endWork">Arbeitsende:</label>
-      <input
-        type="time"
-        id="endWork"
-        value={endWork}
-        onChange={(e) => setEndWork(e.target.value)}
-      />{" "}
-      <br />
-      <button onClick={calculate}>Berechnen</button> <br />
-      <p> {output}</p>
-      <br />
-      <button onClick={save}>Speichern</button>
+      <section id="formular">
+        <label htmlFor="date">Datum: </label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        <label htmlFor="beginnWork">Arbeitsbeginn:</label>
+        <input
+          type="time"
+          id="beginnWork"
+          value={beginnWork}
+          onChange={(e) => setBeginnWork(e.target.value)}
+        />
+        <label htmlFor="beginnBreak">Beginn Mittagspause:</label>
+        <input
+          type="time"
+          id="beginnBreak"
+          value={beginnBreak}
+          onChange={(e) => setBeginnBreak(e.target.value)}
+        />
+        <label htmlFor="endBreak">Ende Mittagspause:</label>
+        <input
+          type="time"
+          id="endBreak"
+          value={endBreak}
+          onChange={(e) => setEndBreak(e.target.value)}
+        />
+        <label htmlFor="endWork">Arbeitsende:</label>
+        <input
+          type="time"
+          id="endWork"
+          value={endWork}
+          onChange={(e) => setEndWork(e.target.value)}
+        />{" "}
+      </section>
+
+      <section id="buttons">
+        <button onClick={calculate}>Berechnen</button>
+        <p> {output}</p>
+        <button onClick={save}>Speichern</button>
+        <button onClick={printArbeitszeiten}>Drucken</button>
+      </section>
       <br />
       <h3>Gespeicherte Arbeitszeiten</h3>
       <table>
@@ -168,8 +175,6 @@ function App() {
           ))}
         </tbody>
       </table>
-      <br></br>
-      <button onClick={printArbeitszeiten}>Drucken</button>
     </>
   );
 }

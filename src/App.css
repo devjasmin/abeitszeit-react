@@ -5,30 +5,46 @@
   font-style: normal;
 }
 
-body h2 {
+h2 {
   font-family: "GodgerDisco-Regular";
   font-size: 2.8rem;
+  color: black;
+  margin-bottom: 2.5rem;
 }
 
 body {
   font-family:
     "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans";
   font-size: 1rem;
-  background-color: antiquewhite;
+  background-color: rgb(238, 160, 58);
   color: black;
   width: 100%;
   height: auto;
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
+  #formular {
+    margin-bottom: 2rem;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  input {
-    margin-bottom: 2rem;
-    line-height: 2rem;
+  #date,
+  #beginnWork,
+  #beginnBreak,
+  #endBreak,
+  #endWork {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(119, 119, 236);
+    width: 140px;
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   button {
@@ -36,10 +52,21 @@ body {
     padding: 0.5rem;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: rgb(188, 188, 243);
+    background-color: rgb(119, 119, 236);
+    width: 200px;
   }
-  #ausgabe {
-    font-size: 1rem;
-    color: blue;
+
+  .p {
+    font-size: 1.2rem;
+  }
+
+  @media print {
+    #formular {
+      visibility: hidden;
+    }
+
+    #buttons {
+      visibility: hidden;
+    }
   }
 }
