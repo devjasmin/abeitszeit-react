@@ -9,9 +9,9 @@ function App() {
   const [endWork, setEndWork] = useState("");
   const [output, setOutput] = useState("");
 
-  const [arbeitszeiten, setarbeitszeiten] = useState(() => {
+  const [workingHours, setWorkingHours] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("arbeitszeiten")) || [];
+      return JSON.parse(localStorage.getItem("workingHours")) || [];
     } catch {
       return [];
     }
@@ -34,12 +34,10 @@ function App() {
       return;
     }
 
-    setarbeitszeiten((prev) => {
-      //console.log("Speichere:", arbeitszeiten);
+    setWorkingHours((prev) => {
       const neu = [...prev, zeiten];
-      //console.log("Neues Array:", neu);
-      localStorage.setItem("arbeitszeiten", JSON.stringify(neu));
-      //console.log(localStorage.getItem("arbeitszeiten"));
+      localStorage.setItem("workingHours", JSON.stringify(neu));
+
       return neu;
     });
 
@@ -96,7 +94,7 @@ function App() {
     return `${stunden}h ${restMinuten}min`;
   }
 
-  function printArbeitszeiten() {
+  function printWorkingHours() {
     window.print();
   }
 
@@ -144,9 +142,9 @@ function App() {
 
       <section id="buttons">
         <button onClick={calculate}>Berechnen</button>
-        <p> {output}</p>
+        <p className="output"> {output}</p>
         <button onClick={save}>Speichern</button>
-        <button onClick={printArbeitszeiten}>Drucken</button>
+        <button onClick={print}>Drucken</button>
       </section>
       <br />
       <h3>Gespeicherte Arbeitszeiten</h3>
@@ -163,7 +161,7 @@ function App() {
         </thead>
 
         <tbody>
-          {arbeitszeiten.map((eintrag, index) => (
+          {workingHours.map((eintrag, index) => (
             <tr key={index}>
               <td>{eintrag.Datum}</td>
               <td>{eintrag.Arbeitsbeginn}</td>
